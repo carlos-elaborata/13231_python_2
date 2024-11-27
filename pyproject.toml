@@ -1,0 +1,829 @@
+[tool.coverage.report]
+exclude_also = [
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.ruff]
+# A list of builtins to treat as defined references, in addition to the system
+# builtins.
+# https://docs.astral.sh/ruff/settings/#builtins
+builtins = []
+
+# A path to the cache directory.
+# https://docs.astral.sh/ruff/settings/#cache-dir
+cache-dir = ".ruff_cache"
+
+# A list of file patterns to exclude from formatting and linting.
+# https://docs.astral.sh/ruff/settings/#exclude
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+# A path to a local pyproject.toml file to merge into this configuration.
+# https://docs.astral.sh/ruff/settings/#extend
+# extend = ""
+
+# A list of file patterns to omit from formatting and linting, in addition to those
+# specified by exclude.
+# https://docs.astral.sh/ruff/settings/#extend-exclude
+extend-exclude = []
+
+# A list of file patterns to include when linting, in addition to those specified by
+# include.
+# https://docs.astral.sh/ruff/settings/#extend-include
+extend-include = []
+
+# Enable fix behavior by-default when running ruff.
+# https://docs.astral.sh/ruff/settings/#fix
+fix = true
+
+# Like fix, but disables reporting on leftover violation. Implies fix.
+# https://docs.astral.sh/ruff/settings/#fix-only
+fix-only = false
+
+# Whether to enforce exclude and extend-exclude patterns, even for paths that are
+# passed to Ruff explicitly.
+# https://docs.astral.sh/ruff/settings/#force-exclude
+force-exclude = false
+
+# A list of file patterns to include when linting.
+# https://docs.astral.sh/ruff/settings/#include
+include = ["*.py", "*.pyi", "*.ipynb", "**/pyproject.toml"]
+
+# The number of spaces per indentation level (tab).
+# https://docs.astral.sh/ruff/settings/#indent-width
+indent-width = 4
+
+# The line length to use when enforcing long-lines violations (like E501) and at which
+# isort and the formatter prefers to wrap lines.
+# https://docs.astral.sh/ruff/settings/#line-length
+line-length = 88
+
+# Mark the specified directories as namespace packages.
+# https://docs.astral.sh/ruff/settings/#namespace-packages
+namespace-packages = []
+
+# The style in which violation messages should be formatted.
+# https://docs.astral.sh/ruff/settings/#output-format
+output-format = "full"
+
+# Whether to enable preview mode.
+# https://docs.astral.sh/ruff/settings/#preview
+preview = true
+
+# Enforce a requirement on the version of Ruff, to enforce at runtime.
+# https://docs.astral.sh/ruff/settings/#required-version
+# required-version = ""
+
+# Whether to automatically exclude files that are ignored by .ignore, .gitignore,
+# .git/info/exclude, and global gitignore files.
+# https://docs.astral.sh/ruff/settings/#respect-gitignore
+respect-gitignore = true
+
+# Whether to show an enumeration of all fixed lint violations
+# https://docs.astral.sh/ruff/settings/#show-fixes
+show-fixes = false
+
+# The directories to consider when resolving first- vs. third-party imports.
+# https://docs.astral.sh/ruff/settings/#src
+src = [".", "src"]
+
+# The minimum Python version to target, e.g., when considering automatic code upgrades,
+# like rewriting type annotations.
+# https://docs.astral.sh/ruff/settings/#target-version
+target-version = "py313"
+
+# Enable application of unsafe fixes.
+# https://docs.astral.sh/ruff/settings/#unsafe-fixes
+unsafe-fixes = false
+
+[tool.ruff.analyze]
+# Whether to detect imports from string literals.
+# https://docs.astral.sh/ruff/settings/#analyze_detect-string-imports
+detect-string-imports = false
+
+# Whether to generate a map from file to files that it depends on (dependencies) or
+# files that depend on it (dependents).
+# https://docs.astral.sh/ruff/settings/#analyze_direction
+# direction = "dependents"
+
+# A list of file patterns to exclude from analysis in addition to the files excluded
+# globally (see exclude, and extend-exclude).
+# https://docs.astral.sh/ruff/settings/#analyze_exclude
+exclude = []
+
+# A map from file path to the list of file paths or globs that should be considered
+# dependencies of that file, regardless of whether relevant imports are detected.
+# https://docs.astral.sh/ruff/settings/#analyze_include-dependencies
+include-dependencies = {}
+
+# Whether to enable preview mode
+# https://docs.astral.sh/ruff/settings/#analyze_preview
+preview = true
+
+[tool.ruff.format]
+# Whether to format code snippets in docstrings.
+# https://docs.astral.sh/ruff/settings/#format_docstring-code-format
+docstring-code-format = true
+
+# Set the line length used when formatting code snippets in docstrings.
+# https://docs.astral.sh/ruff/settings/#format_docstring-code-line-length
+docstring-code-line-length = "dynamic"
+
+# A list of file patterns to exclude from formatting in addition to the files excluded
+# globally.
+# https://docs.astral.sh/ruff/settings/#format_exclude
+exclude = []
+
+# Whether to use spaces or tabs for indentation.
+# https://docs.astral.sh/ruff/settings/#format_indent-style
+indent-style = "space"
+
+# The character Ruff uses at the end of a line.
+# https://docs.astral.sh/ruff/settings/#format_line-ending
+line-ending = "auto"
+
+# Whether to enable the unstable preview style formatting.
+# https://docs.astral.sh/ruff/settings/#format_preview
+preview = true
+
+# Configures the preferred quote character for strings.
+# https://docs.astral.sh/ruff/settings/#format_quote-style
+quote-style = "double"
+
+# Ruff uses existing trailing commas as an indication that short lines should be left
+# separate.
+# https://docs.astral.sh/ruff/settings/#format_skip-magic-trailing-comma
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint]
+# A list of allowed "confusable" Unicode characters to ignore when enforcing RUF001,
+# RUF002, and RUF003.
+# https://docs.astral.sh/ruff/settings/#lint_allowed-confusables
+allowed-confusables = []
+
+# A regular expression used to identify "dummy" variables, or those which should be
+# ignored when enforcing (e.g.) unused-variable rules.
+# https://docs.astral.sh/ruff/settings/#lint_dummy-variable-rgx
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# A list of file patterns to exclude from linting in addition to the files excluded
+# globally.
+# https://docs.astral.sh/ruff/settings/#lint_exclude
+exclude = []
+
+# Whether to require exact codes to select preview rules.
+# https://docs.astral.sh/ruff/settings/#lint_explicit-preview-rules
+explicit-preview-rules = false
+
+# A list of rule codes or prefixes to consider fixable, in addition to those specified
+# by fixable.
+# https://docs.astral.sh/ruff/settings/#lint_extend-fixable
+extend-fixable = []
+
+# A list of rule codes or prefixes for which unsafe fixes should be considered safe.
+# https://docs.astral.sh/ruff/settings/#lint_extend-safe-fixes
+extend-safe-fixes = []
+
+# A list of rule codes or prefixes to enable, in addition to those specified by select.
+# https://docs.astral.sh/ruff/settings/#lint_extend-select
+extend-select = []
+
+# A list of rule codes or prefixes for which safe fixes should be considered unsafe.
+# https://docs.astral.sh/ruff/settings/#lint_extend-unsafe-fixes
+extend-unsafe-fixes = []
+
+# A list of rule codes or prefixes that are unsupported by Ruff, but should be
+# preserved when (e.g.) validating # noqa directives.
+# https://docs.astral.sh/ruff/settings/#lint_external
+external = []
+
+# A list of rule codes or prefixes to consider fixable.
+# https://docs.astral.sh/ruff/settings/#lint_fixable
+fixable = ["ALL"]
+
+# A list of rule codes or prefixes to ignore.
+# https://docs.astral.sh/ruff/settings/#lint_ignore
+ignore = [
+    "CPY001",
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "D107",
+    "DOC201",
+    "ERA001",
+    "FBT001",
+    "FBT002",
+    "FIX002",
+    "INP001",
+    "ISC002",
+    "PLR0904",
+    "PLR2004",
+    "PLR6301",
+    "RUF012",
+    "S101",
+    "S311",
+    "S501",
+    "T201",
+    "TD002",
+    "TD003",
+    "TID252",
+]
+
+# A list of objects that should be treated equivalently to a logging.Logger object.
+# https://docs.astral.sh/ruff/settings/#lint_logger-objects
+logger-objects = []
+
+# Whether to enable preview mode.
+# https://docs.astral.sh/ruff/settings/#lint_preview
+preview = true
+
+# A list of rule codes or prefixes to enable.
+# https://docs.astral.sh/ruff/settings/#lint_select
+select = ["ALL"]
+
+# A list of task tags to recognize.
+# https://docs.astral.sh/ruff/settings/#lint_task-tags
+task-tags = ["TODO", "FIXME", "XXX"]
+
+# A list of modules whose exports should be treated equivalently to members of the
+# typing module.
+# https://docs.astral.sh/ruff/settings/#lint_typing-modules
+typing-modules = []
+
+# A list of rule codes or prefixes to consider non-fixable.
+# https://docs.astral.sh/ruff/settings/#lint_unfixable
+unfixable = []
+
+[tool.ruff.lint.extend-per-file-ignores]
+# A list of mappings from file pattern to rule codes or prefixes to exclude, in
+# addition to any rules excluded by per-file-ignores.
+# "" = [""]
+
+[tool.ruff.lint.per-file-ignores]
+# A list of mappings from file pattern to rule codes or prefixes to exclude, when
+# considering any matching files. 
+# "" = []
+
+[tool.ruff.lint.flake8-annotations]
+# Whether to suppress ANN401 for dynamically typed *args and **kwargs arguments.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-annotations_allow-star-arg-any
+allow-star-arg-any = false
+
+# Whether to suppress ANN* rules for any declaration that hasn't been typed at all.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-annotations_ignore-fully-untyped
+ignore-fully-untyped = false
+
+# Whether to allow the omission of a return type hint for __init__ if at least one
+# argument is annotated.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-annotations_mypy-init-return
+mypy-init-return = false
+
+# Whether to suppress ANN000-level violations for arguments matching the "dummy"
+# variable regex (like _).
+# https://docs.astral.sh/ruff/settings/#lint_flake8-annotations_suppress-dummy-args
+suppress-dummy-args = false
+
+# Whether to suppress ANN200-level violations for functions that meet either of the
+# following criteria:
+#   Contain no return statement.
+#   Explicit return statement(s) all return None (explicitly or implicitly).
+# https://docs.astral.sh/ruff/settings/#lint_flake8-annotations_suppress-none-returning
+suppress-none-returning = false
+
+[tool.ruff.lint.flake8-bandit]
+# Whether to disallow try-except-pass (S110) for specific exception types.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-bandit_check-typed-exception
+check-typed-exception = false
+
+# A list of directories to consider temporary.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-bandit_hardcoded-tmp-directory
+hardcoded-tmp-directory = ["/tmp", "/var/tmp", "/dev/shm"]
+
+# A list of directories to consider temporary, in addition to those specified by
+# hardcoded-tmp-directory.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-bandit_hardcoded-tmp-directory-extend
+hardcoded-tmp-directory-extend = []
+
+[tool.ruff.lint.flake8-boolean-trap]
+# Additional callable functions with which to allow boolean traps.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-boolean-trap_extend-allowed-calls
+extend-allowed-calls = []
+
+[tool.ruff.lint.flake8-bugbear]
+# Additional callable functions to consider "immutable" when evaluating, e.g., the
+# function-call-in-default-argument rule (B008) or function-call-in-dataclass-defaults
+# rule (RUF009).
+# https://docs.astral.sh/ruff/settings/#lint_flake8-bugbear_extend-immutable-calls
+extend-immutable-calls = []
+
+[tool.ruff.lint.flake8-builtins]
+# List of builtin module names to allow.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-builtins_builtins-allowed-modules
+builtins-allowed-modules = []
+
+# Ignore list of builtins.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-builtins_builtins-ignorelist
+builtins-ignorelist = []
+
+[tool.ruff.lint.flake8-comprehensions]
+# Allow dict calls that make use of keyword arguments.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-comprehensions_allow-dict-calls-with-keyword-arguments
+allow-dict-calls-with-keyword-arguments = false
+
+[tool.ruff.lint.flake8-copyright]
+# Author to enforce within the copyright notice.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-copyright_author
+# author = ""
+
+# A minimum file size (in bytes) required for a copyright notice to be enforced.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-copyright_min-file-size
+min-file-size = 0
+
+# The regular expression used to match the copyright notice, compiled with the regex
+# crate.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-copyright_notice-rgx
+notice-rgx = "(?i)Copyright\\s+((?:\\(C\\)|©)\\s+)?\\d{4}((-|,\\s)\\d{4})*"
+
+[tool.ruff.lint.flake8-errmsg]
+# Maximum string length for string literals in exception messages.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-errmsg_max-string-length
+max-string-length = 0
+
+[tool.ruff.lint.flake8-gettext]
+# Additional function names to consider as internationalization calls, in addition to
+# those included in function-names.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-gettext_extend-function-names
+extend-function-names = []
+
+# The function names to consider as internationalization calls.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-gettext_function-names
+function-names = ["_", "gettext", "ngettext"]
+
+[tool.ruff.lint.flake8-implicit-str-concat]
+# Whether to allow implicit string concatenations for multiline strings.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-implicit-str-concat_allow-multiline
+allow-multiline = true
+
+[tool.ruff.lint.flake8-import-conventions.aliases]
+# The conventional aliases for imports.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-import-conventions_aliases
+#  = ""
+
+[tool.ruff.lint.flake8-import-conventions.banned-aliases]
+# A mapping from module to its banned import aliases.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-import-conventions_banned-aliases
+# "" = [""]
+
+[tool.ruff.lint.flake8-import-conventions]
+# A list of modules that should not be imported from using the from ... import ...
+# syntax.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-import-conventions_banned-from
+banned-from = []
+
+[tool.ruff.lint.flake8-import-conventions.extend-aliases]
+# A mapping from module to conventional import alias.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-import-conventions_extend-aliases
+# "" = ""
+
+[tool.ruff.lint.flake8-pytest-style]
+# Boolean flag specifying whether @pytest.fixture() without parameters should have
+# parentheses.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-pytest-style_fixture-parentheses
+fixture-parentheses = false
+
+# Boolean flag specifying whether @pytest.mark.foo() without parameters should have
+# parentheses.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-pytest-style_mark-parentheses
+mark-parentheses = false
+
+# Expected type for multiple argument names in @pytest.mark.parametrize.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-pytest-style_parametrize-names-type
+parametrize-names-type = "tuple"
+
+# Expected type for each row of values in @pytest.mark.parametrize in case of multiple
+# parameters.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-pytest-style_parametrize-values-row-type
+parametrize-values-row-type = "tuple"
+
+# Expected type for the list of values rows in @pytest.mark.parametrize.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-pytest-style_parametrize-values-type
+parametrize-values-type = "list"
+
+# List of additional exception names that require a match= parameter in a
+# pytest.raises() call.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-pytest-style_raises-extend-require-match-for
+raises-extend-require-match-for = []
+
+# List of exception names that require a match= parameter in a pytest.raises() call.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-pytest-style_raises-require-match-for
+raises-require-match-for = [
+    "BaseException",
+    "Exception",
+    "ValueError",
+    "OSError",
+    "IOError",
+    "EnvironmentError",
+    "socket.error",
+]
+
+[tool.ruff.lint.flake8-quotes]
+# Whether to avoid using single quotes if a string contains single quotes, or
+# vice-versa with double quotes, as per PEP 8.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-quotes_avoid-escape
+avoid-escape = true
+
+# Quote style to prefer for docstrings.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-quotes_docstring-quotes
+docstring-quotes = "double"
+
+# Quote style to prefer for inline strings.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-quotes_inline-quotes
+inline-quotes = "double"
+
+# Quote style to prefer for multiline strings.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-quotes_multiline-quotes
+multiline-quotes = "double"
+
+[tool.ruff.lint.flake8-self]
+# Additional names to ignore when considering flake8-self violations, in addition to
+# those included in ignore-names.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-self_extend-ignore-names
+extend-ignore-names = []
+
+# A list of names to ignore when considering flake8-self violations.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-self_ignore-names
+ignore-names = [
+    "_make",
+    "_asdict",
+    "_replace",
+    "_fields",
+    "_field_defaults",
+    "_name_",
+    "_value_",
+]
+
+[tool.ruff.lint.flake8-tidy-imports]
+# Whether to ban all relative imports ("all"), or only those imports that extend into
+# the parent module or beyond ("parents").
+# https://docs.astral.sh/ruff/settings/#lint_flake8-tidy-imports_ban-relative-imports
+ban-relative-imports = "parents"
+
+# List of specific modules that may not be imported at module level, and should instead
+# be imported lazily (e.g., within a function definition, or an if TYPE_CHECKING: block,
+# or some other nested context).
+# https://docs.astral.sh/ruff/settings/#lint_flake8-tidy-imports_banned-module-level-imports
+banned-module-level-imports = []
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+# Specific modules or module members that may not be imported or accessed.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-tidy-imports_banned-api
+# "".msg = ""
+
+[tool.ruff.lint.flake8-type-checking]
+# Exempt certain modules from needing to be moved into type-checking blocks.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-type-checking_exempt-modules
+exempt-modules = ["typing"]
+
+# Whether to add quotes around type annotations, if doing so would allow the
+# corresponding import to be moved into a type-checking block.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-type-checking_quote-annotations
+quote-annotations = false
+
+# Exempt classes that list any of the enumerated classes as a base class from needing
+# to be moved into type-checking blocks.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-type-checking_runtime-evaluated-base-classes
+runtime-evaluated-base-classes = []
+
+# Exempt classes and functions decorated with any of the enumerated decorators from
+# being moved into type-checking blocks.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-type-checking_runtime-evaluated-decorators
+runtime-evaluated-decorators = []
+
+# Enforce TC001, TC002, and TC003 rules even when valid runtime imports are present for
+# the same module.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-type-checking_strict
+strict = false
+
+[tool.ruff.lint.flake8-unused-arguments]
+# Whether to allow unused variadic arguments, like *args and **kwargs.
+# https://docs.astral.sh/ruff/settings/#lint_flake8-unused-arguments_ignore-variadic-names
+ignore-variadic-names = false
+
+[tool.ruff.lint.isort]
+# Sort imports taking into account case sensitivity.
+# https://docs.astral.sh/ruff/settings/#lint_isort_case-sensitive
+case-sensitive = false
+
+# An override list of tokens to always recognize as a Class for order-by-type
+# regardless of casing.
+# https://docs.astral.sh/ruff/settings/#lint_isort_classes
+classes = []
+
+# Combines as imports on the same line.
+# https://docs.astral.sh/ruff/settings/#lint_isort_combine-as-imports
+combine-as-imports = false
+
+# An override list of tokens to always recognize as a CONSTANT for order-by-type
+# regardless of casing.
+# https://docs.astral.sh/ruff/settings/#lint_isort_constants
+constants = []
+
+# Define a default section for any imports that don't fit into the specified
+# section-order.
+# https://docs.astral.sh/ruff/settings/#lint_isort_default-section
+default-section = "third-party"
+
+# Whether to automatically mark imports from within the same package as first-party.
+# https://docs.astral.sh/ruff/settings/#lint_isort_detect-same-package
+detect-same-package = true
+
+# A list of modules to consider standard-library, in addition to those known to Ruff in
+# advance.
+# https://docs.astral.sh/ruff/settings/#lint_isort_extra-standard-library
+extra-standard-library = []
+
+# Forces all from imports to appear on their own line.
+# https://docs.astral.sh/ruff/settings/#lint_isort_force-single-line
+force-single-line = false
+
+# Don't sort straight-style imports (like import sys) before from-style imports (like
+# from itertools import groupby).
+# https://docs.astral.sh/ruff/settings/#lint_isort_force-sort-within-sections
+force-sort-within-sections = false
+
+# Force specific imports to the top of their appropriate section.
+# https://docs.astral.sh/ruff/settings/#lint_isort_force-to-top
+force-to-top = []
+
+# Force import from statements with multiple members and at least one alias (e.g.,
+# import A as B) to wrap such that every line contains exactly one member.
+# https://docs.astral.sh/ruff/settings/#lint_isort_force-wrap-aliases
+force-wrap-aliases = false
+
+# A list of modules to separate into auxiliary block(s) of imports, in the order
+# specified.
+# https://docs.astral.sh/ruff/settings/#lint_isort_forced-separate
+forced-separate = []
+
+# Whether to place import from imports before straight imports when sorting.
+# https://docs.astral.sh/ruff/settings/#lint_isort_from-first
+from-first = false
+
+# A list of modules to consider first-party, regardless of whether they can be
+# identified as such via introspection of the local filesystem.
+# https://docs.astral.sh/ruff/settings/#lint_isort_known-first-party
+known-first-party = []
+
+# A list of modules to consider being a local folder.
+# https://docs.astral.sh/ruff/settings/#lint_isort_known-local-folder
+known-local-folder = []
+
+# A list of modules to consider third-party, regardless of whether they can be
+# identified as such via introspection of the local filesystem.
+# https://docs.astral.sh/ruff/settings/#lint_isort_known-third-party
+known-third-party = []
+
+# Sort imports by their string length, such that shorter imports appear before longer
+# imports.
+# https://docs.astral.sh/ruff/settings/#lint_isort_length-sort
+length-sort = false
+
+# Sort straight imports by their string length.
+# https://docs.astral.sh/ruff/settings/#lint_isort_length-sort-straight
+length-sort-straight = false
+
+# The number of blank lines to place after imports.
+# https://docs.astral.sh/ruff/settings/#lint_isort_lines-after-imports
+lines-after-imports = -1
+
+# The number of lines to place between "direct" and import from imports.
+# https://docs.astral.sh/ruff/settings/#lint_isort_lines-between-types
+lines-between-types = 0
+
+# A list of sections that should not be delineated from the previous section via empty
+# lines.
+# https://docs.astral.sh/ruff/settings/#lint_isort_no-lines-before
+no-lines-before = []
+
+# Put all imports into the same section bucket.
+# https://docs.astral.sh/ruff/settings/#lint_isort_no-sections
+no-sections = false
+
+# Order imports by type, which is determined by case, in addition to alphabetically.
+# https://docs.astral.sh/ruff/settings/#lint_isort_order-by-type
+order-by-type = true
+
+# Whether to place "closer" imports (fewer . characters, most local) before "further"
+# imports (more . characters, least local), or vice versa.
+# https://docs.astral.sh/ruff/settings/#lint_isort_relative-imports-order
+relative-imports-order = "furthest-to-closest"
+
+# Add the specified import line to all files.
+# https://docs.astral.sh/ruff/settings/#lint_isort_required-imports
+required-imports = []
+
+# Override in which order the sections should be output.
+# https://docs.astral.sh/ruff/settings/#lint_isort_section-order
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+
+# One or more modules to exclude from the single line rule.
+# https://docs.astral.sh/ruff/settings/#lint_isort_single-line-exclusions
+single-line-exclusions = []
+
+# If a comma is placed after the last member in a multi-line import, then the imports
+# will never be folded into one line.
+# https://docs.astral.sh/ruff/settings/#lint_isort_split-on-trailing-comma
+split-on-trailing-comma = true
+
+# An override list of tokens to always recognize as a var for order-by-type regardless
+# of casing.
+# https://docs.astral.sh/ruff/settings/#lint_isort_variables
+variables = []
+
+[tool.ruff.lint.isort.sections]
+# A list of mappings from section names to modules.
+# https://docs.astral.sh/ruff/settings/#lint_isort_sections
+# "" = [""]
+
+[tool.ruff.lint.mccabe]
+# The maximum McCabe complexity to allow before triggering C901 errors.
+# https://docs.astral.sh/ruff/settings/#lint_mccabe_max-complexity
+max-complexity = 10
+
+[tool.ruff.lint.pep8-naming]
+# A list of decorators that, when applied to a method, indicate that the method should
+# be treated as a class method (in addition to the builtin @classmethod).
+# https://docs.astral.sh/ruff/settings/#lint_pep8-naming_classmethod-decorators
+classmethod-decorators = []
+
+# Additional names (or patterns) to ignore when considering pep8-naming violations, in
+# addition to those included in ignore-names.
+# https://docs.astral.sh/ruff/settings/#lint_pep8-naming_extend-ignore-names
+extend-ignore-names = []
+
+# A list of names (or patterns) to ignore when considering pep8-naming violations.
+# https://docs.astral.sh/ruff/settings/#lint_pep8-naming_ignore-names
+ignore-names = [
+    "setUp",
+    "tearDown",
+    "setUpClass",
+    "tearDownClass",
+    "setUpModule",
+    "tearDownModule",
+    "asyncSetUp",
+    "asyncTearDown",
+    "setUpTestData",
+    "failureException",
+    "longMessage",
+    "maxDiff",
+]
+
+# A list of decorators that, when applied to a method, indicate that the method should
+# be treated as a static method (in addition to the builtin @staticmethod).
+# https://docs.astral.sh/ruff/settings/#lint_pep8-naming_staticmethod-decorators
+staticmethod-decorators = []
+
+[tool.ruff.lint.pycodestyle]
+# Whether line-length violations (E501) should be triggered for comments starting with
+# task-tags (by default: ["TODO", "FIXME", and "XXX"]).
+# https://docs.astral.sh/ruff/settings/#lint_pycodestyle_ignore-overlong-task-comments
+ignore-overlong-task-comments = false
+
+# The maximum line length to allow for doc-line-too-long violations within
+# documentation (W505), including standalone comments. 
+# https://docs.astral.sh/ruff/settings/#lint_pycodestyle_max-doc-length
+max-doc-length = 88
+
+# The maximum line length to allow for line-too-long violations.
+# https://docs.astral.sh/ruff/settings/#lint_pycodestyle_max-line-length
+# max-line-length = 
+
+[tool.ruff.lint.pydocstyle]
+# Whether to use Google-style or NumPy-style conventions or the PEP 257 defaults when
+# analyzing docstring sections.
+# https://docs.astral.sh/ruff/settings/#lint_pydocstyle_convention
+convention = "google"
+
+# Ignore docstrings for functions or methods decorated with the specified
+# fully-qualified decorators.
+# https://docs.astral.sh/ruff/settings/#lint_pydocstyle_ignore-decorators
+ignore-decorators = []
+
+# A list of decorators that, when applied to a method, indicate that the method should
+# be treated as a property (in addition to the builtin @property and standard-library
+# @functools.cached_property).
+# https://docs.astral.sh/ruff/settings/#lint_pydocstyle_property-decorators
+property-decorators = []
+
+[tool.ruff.lint.pyflakes]
+# A list of modules to ignore when considering unused imports.
+# https://docs.astral.sh/ruff/settings/#lint_pyflakes_allowed-unused-imports
+allowed-unused-imports = []
+
+# Additional functions or classes to consider generic, such that any subscripts should
+# be treated as type annotation (e.g., ForeignKey in
+# django.db.models.ForeignKey["User"].
+# https://docs.astral.sh/ruff/settings/#lint_pyflakes_extend-generics
+extend-generics = []
+
+[tool.ruff.lint.pylint]
+# Dunder methods name to allow, in addition to the default set from the Python standard
+# library (see: PLW3201).
+# https://docs.astral.sh/ruff/settings/#lint_pylint_allow-dunder-method-names
+allow-dunder-method-names = []
+
+# Constant types to ignore when used as "magic values" (see: PLR2004).
+# https://docs.astral.sh/ruff/settings/#lint_pylint_allow-magic-value-types
+allow-magic-value-types = ["str", "bytes"]
+
+# Maximum number of arguments allowed for a function or method definition (see:
+# PLR0913).
+# https://docs.astral.sh/ruff/settings/#lint_pylint_max-args
+max-args = 5
+
+# Maximum number of Boolean expressions allowed within a single if statement (see:
+# PLR0916).
+# https://docs.astral.sh/ruff/settings/#lint_pylint_max-bool-expr
+max-bool-expr = 5
+
+# Maximum number of branches allowed for a function or method body (see: PLR0912).
+# https://docs.astral.sh/ruff/settings/#lint_pylint_max-branches
+max-branches = 12
+
+# Maximum number of local variables allowed for a function or method body (see:
+# PLR0914).
+# https://docs.astral.sh/ruff/settings/#lint_pylint_max-locals
+max-locals = 15
+
+# Maximum number of nested blocks allowed within a function or method body (see:
+# PLR1702).
+# https://docs.astral.sh/ruff/settings/#lint_pylint_max-nested-blocks
+max-nested-blocks = 5
+
+# Maximum number of positional arguments allowed for a function or method definition
+# (see: PLR0917).
+# https://docs.astral.sh/ruff/settings/#lint_pylint_max-positional-args
+max-positional-args = 5
+
+# Maximum number of public methods allowed for a class (see: PLR0904).
+# https://docs.astral.sh/ruff/settings/#lint_pylint_max-public-methods
+max-public-methods = 20
+
+# Maximum number of return statements allowed for a function or method body (see
+# PLR0911).
+# https://docs.astral.sh/ruff/settings/#lint_pylint_max-returns
+max-returns = 6
+
+# Maximum number of statements allowed for a function or method body (see: PLR0915).
+# https://docs.astral.sh/ruff/settings/#lint_pylint_max-statements
+max-statements = 50
+
+[tool.ruff.lint.pyupgrade]
+# Whether to avoid PEP 585 (List[int] -> list[int]) and PEP 604 (Union[str, int] -> str
+#  | int) rewrites even if a file imports from __future__ import annotations.
+# https://docs.astral.sh/ruff/settings/#lint_pyupgrade_keep-runtime-typing
+keep-runtime-typing = false
+
+[tool.ruff.lint.ruff]
+# Whether to prefer accessing items keyed by tuples with parentheses around the tuple
+# (see RUF031).
+# https://docs.astral.sh/ruff/settings/#lint_ruff_parenthesize-tuple-in-subscript
+parenthesize-tuple-in-subscript = false
