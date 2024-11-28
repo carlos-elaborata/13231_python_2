@@ -24,8 +24,17 @@ class ContaBancaria:
             )
         return "Erro: Valor do depósito inválido."
 
-    def sacar(self, valor: float):
-        pass
+    def sacar(self, valor: float) -> str:
+        if 0 < valor <= self.saldo:  # if self.saldo >= valor and valor > 0:
+            self.saldo -= Decimal(value=str(object=valor))
+
+            return (
+                f"\nTitular: {self.titular}\n"
+                f"Saque de R$ {valor:.2f} realizado.\n"
+                f"Novo saldo: R$ {self.saldo:.2f}.\n"
+            )
+
+        return "Erro: Saldo insuficiente ou valor de saque inválido."
 
     def consultar_saldo(self) -> str:
         return f"\nTitular: {self.titular}\nSaldo: R$ {self.saldo:.2f}."
