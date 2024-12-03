@@ -11,7 +11,11 @@ usuario_autenticado = False
 
 def autenticacao_requerida(func):
     def wrapper(*args, **kwargs):
-        pass
+        if usuario_autenticado:
+            return func(*args, **kwargs)
+        print("Erro: Usuário não autenticado. Faça login para acessar esta função.")
+
+        return None
 
     return wrapper
 
