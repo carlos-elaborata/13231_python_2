@@ -13,13 +13,16 @@ Caso contrário, ele deve pular para a próxima venda até encontrar uma que ate
 critérios definidos.
 """
 
-# Importação do módulo typing para suporte a anotações de tipo
-from typing import TYPE_CHECKING, Self
+# Importa TYPE_CHECKING para suportar a checagem de tipos estática
+from typing import TYPE_CHECKING
 
-# Verifica se o código está sendo analisado por um verificador de tipos
+# Se estiver em um ambiente de verificação de tipos
 if TYPE_CHECKING:
-    # Importação de Iterator para tipagem de iteradores
+    # Importa Iterator para anotações de tipos de iteradores
     from collections.abc import Iterator
+
+    # Importa Self para anotações de tipos referentes à própria classe
+    from typing import Self
 
 
 class IteradorVendasMensais:
@@ -55,7 +58,7 @@ class IteradorVendasMensais:
         # Criação de um iterador sobre as chaves (meses) das vendas
         self.meses_iter: Iterator[str] = iter(self.vendas)
 
-    def __iter__(self) -> Self:
+    def __iter__(self) -> "Self":
         """Retorna o próprio iterador.
 
         Returns:
