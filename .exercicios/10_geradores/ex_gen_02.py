@@ -10,14 +10,36 @@ gerador.
 
 import random
 import string
+from typing import TYPE_CHECKING
 
-print(string.ascii_letters)
-print(string.digits)
-print(string.punctuation)
+if TYPE_CHECKING:
+    from collections.abc import Generator
+    from typing import NoReturn
 
-print(
-    random.choices(
-        population=string.ascii_letters + string.digits + string.punctuation,
-        k=10,
-    ),
-)
+caracteres_especiais = "!#$&*"
+
+
+def gerador_senhas(tamanho: int = 8) -> "Generator[str, None, NoReturn]":
+    while True:
+        senha: str = "".join(
+            random.choices(
+                population=string.ascii_letters + string.digits + caracteres_especiais,
+                k=tamanho,
+            ),
+        )
+
+        yield senha
+
+
+meu_gerador: "Generator[str, None, NoReturn]" = gerador_senhas(tamanho=10)
+
+print("As primeiras 5 senhas geradas:")
+for _ in range(5):
+    print(next(meu_gerador))
+
+
+meu_gerador_tamanho_8: "Generator[str, None, NoReturn]" = gerador_senhas()
+
+print("As primeiras 5 senhas geradas com 8 caracteres:")
+for _ in range(5):
+    print(next(meu_gerador_tamanho_8))
