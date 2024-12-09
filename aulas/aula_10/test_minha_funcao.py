@@ -57,6 +57,11 @@ def test_soma_basica(a: float, b: float, resultado: float) -> None:
         (3, None, TypeError, MSG_TYPE_ERROR),
     ],
 )
-def test_soma_tipos_e_excecoes(a: float, b: float, erro: Exception, msg: str) -> None:
-    with pytest.raises(erro, match=msg):
+def test_soma_tipos_e_excecoes(
+    a: float,
+    b: float,
+    erro: type[Exception],
+    msg: str,
+) -> None:
+    with pytest.raises(expected_exception=erro, match=msg):
         soma(a=a, b=b)
