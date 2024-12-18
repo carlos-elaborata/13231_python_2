@@ -1,0 +1,254 @@
+/* Reset básico de CSS para garantir consistência entre navegadores */
+
+/* Define o box-sizing como border-box para todos os elementos e seus pseudo-elementos.
+   Isso inclui o padding e as bordas na largura e altura total dos elementos. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove a margem de todos os elementos para evitar inconsistências no espaçamento. */
+* {
+    margin: 0;
+}
+
+/* Define a altura da linha padrão para 1.5, melhorando a legibilidade do texto. */
+body {
+    line-height: 1.5;
+}
+
+/* Garante que esses elementos sejam exibidos como blocos e que não ultrapassem
+   a largura máxima do seu contêiner. Isso é útil para elementos visuais. */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* Faz com que esses elementos herdem a configuração de fonte do elemento pai,
+   garantindo consistência tipográfica no design. */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Permite quebra de linha automática para evitar estouro do contêiner,
+   especialmente em elementos de texto. */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/* Fim do reset */
+
+/* Estilização específica para elementos com a classe .book. Cada livro será exibido como
+   um cartão com bordas arredondadas, sombra e layout flexível. */
+.book {
+    /* Alinha os itens ao centro verticalmente. */
+    align-items: center;
+    /* Define o fundo como branco. */
+    background-color: #fff;
+    /* Adiciona uma sombra suave. */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+    /* Define o layout como flexível. */
+    display: flex;
+    /* Permite que os itens dentro do contêiner quebrem linha. */
+    flex-wrap: wrap;
+    /* Adiciona espaçamento interno de 20px. */
+    padding: 20px;
+    /* Bordas arredondadas com 5px. */
+    border-radius: 5px;
+    /* Adiciona um espaçamento inferior de 20px. */
+    margin-bottom: 20px;
+}
+
+/* Define estilos para imagens de capas de livros (.book-cover).
+   A imagem terá um pequeno espaçamento lateral e uma largura máxima de 100px. */
+.book-cover {
+    /* Espaçamento à direita. */
+    margin-right: 20px;
+    /* Largura máxima para evitar exageros no tamanho da imagem. */
+    max-width: 100px;
+}
+
+/* Estiliza placeholders para capas de livros (.book-cover-placeholder).
+   Substitui a capa do livro quando não há imagem disponível. */
+.book-cover-placeholder {
+    /* Centraliza o conteúdo verticalmente. */
+    align-items: center;
+    /* Define um fundo cinza claro. */
+    background-color: #eee;
+    /* Define a cor do texto como cinza médio. */
+    color: #999;
+    /* Define o layout como flexível. */
+    display: flex;
+    /* Altura fixa de 150px. */
+    height: 150px;
+    /* Centraliza o conteúdo horizontalmente. */
+    justify-content: center;
+    /* Adiciona espaçamento à direita. */
+    margin-right: 20px;
+    /* Centraliza o texto no placeholder. */
+    text-align: center;
+    /* Largura fixa de 100px. */
+    width: 100px;
+}
+
+/* Aplica uma margem inferior de 10px aos detalhes dos livros, separando cada linha de informação. */
+.book-detail {
+    margin-bottom: 10px;
+}
+
+/* Define que os elementos com a classe .book-info ocuparão todo o espaço disponível no contêiner flexível. */
+.book-info {
+    flex: 1;
+}
+
+/* Estiliza o contêiner principal da página, centralizando-o e limitando sua largura máxima. */
+.container {
+    /* Centraliza o contêiner horizontalmente. */
+    margin: auto;
+    /* Define uma largura máxima de 1200px. */
+    max-width: 1200px;
+    /* Adiciona espaçamento interno lateral. */
+    padding: 0 20px;
+}
+
+/* Personaliza o botão de exportação para Excel, com cores, bordas e efeitos de hover. */
+.excel {
+    /* Verde escuro para o botão. */
+    background-color: #1d6f42;
+    /* Texto branco. */
+    color: #fff;
+    /* Remove bordas padrão. */
+    border: 0;
+    /* Mostra o cursor pointer ao passar sobre o botão. */
+    cursor: pointer;
+    /* Adiciona espaçamento interno. */
+    padding: 10px;
+    /* Bordas arredondadas. */
+    border-radius: 5px;
+    /* Espaçamento inferior. */
+    margin-bottom: 20px;
+    /* Espaçamento à direita. */
+    margin-right: 10px;
+}
+
+/* Altera a cor do botão ao passar o mouse sobre ele. */
+.excel:hover {
+    /* Tom mais escuro de verde. */
+    background-color: #1e5235;
+}
+
+/* Estiliza links para o Google Books, com cor azul padrão e sem sublinhado. */
+.link-google-books {
+    /* Azul para links. */
+    color: #007bff;
+    /* Remove sublinhado dos links. */
+    text-decoration: none;
+}
+
+/* Adiciona sublinhado nos links ao passar o mouse sobre eles. */
+.link-google-books:hover {
+    text-decoration: underline;
+}
+
+/* Define uma cor alternativa para links que indicam indisponibilidade no Google Books. */
+.link-google-books-not-found {
+    /* Tom de cinza-azulado. */
+    color: #657e9b;
+    /* Remove sublinhado. */
+    text-decoration: none;
+}
+
+/* Regras de mídia para telas com largura máxima de 768px.
+   Otimiza o layout para dispositivos móveis. */
+@media (max-width: 768px) {
+
+    /* Define que o layout do .book será vertical em telas pequenas. */
+    .book {
+        flex-direction: column;
+    }
+
+    /* Centraliza a capa e o placeholder no layout vertical. */
+    .book-cover,
+    .book-cover-placeholder {
+        margin: 0 auto 20px;
+    }
+}
+
+/* Define estilos globais para o corpo do documento. */
+body {
+    /* Fundo cinza-claro para o corpo da página. */
+    background-color: #f8f9fa;
+    /* Cor do texto principal como cinza-escuro. */
+    color: #333;
+    /* Define uma fonte padrão. */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    /* Altura de linha maior para melhorar a legibilidade. */
+    line-height: 1.6;
+    /* Adiciona espaçamento interno ao corpo. */
+    padding: 20px;
+}
+
+/* Estiliza botões gerais, com cores e bordas arredondadas. */
+button {
+    /* Azul padrão para botões. */
+    background-color: #007bff;
+    /* Texto branco. */
+    color: #fff;
+    /* Remove bordas padrão. */
+    border: 0;
+    /* Mostra o cursor pointer ao passar sobre o botão. */
+    cursor: pointer;
+    /* Adiciona espaçamento interno. */
+    padding: 10px;
+    /* Bordas arredondadas. */
+    border-radius: 5px;
+    /* Espaçamento inferior. */
+    margin-bottom: 20px;
+    /* Espaçamento à direita. */
+    margin-right: 10px;
+}
+
+/* Altera a cor do botão ao passar o mouse sobre ele. */
+button:hover {
+    /* Azul mais escuro. */
+    background-color: #0056b3;
+}
+
+/* Estiliza elementos de seleção (select) com bordas e espaçamento interno. */
+select {
+    /* Borda cinza-claro. */
+    border: 1px solid #ccc;
+    /* Mostra o cursor pointer ao passar sobre o elemento. */
+    cursor: pointer;
+    /* Adiciona espaçamento interno. */
+    padding: 10px;
+    /* Bordas arredondadas. */
+    border-radius: 5px;
+    /* Espaçamento inferior. */
+    margin-bottom: 20px;
+    /* Espaçamento à direita. */
+    margin-right: 10px;
+}
+
+/* Define estilos para os cabeçalhos principais (h1, h2). */
+h1,
+h2 {
+    /* Azul padrão para os títulos. */
+    color: #007bff;
+    /* Adiciona espaçamento inferior. */
+    margin-bottom: 20px;
+}

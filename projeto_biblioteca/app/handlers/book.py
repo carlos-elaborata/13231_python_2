@@ -1,85 +1,157 @@
 from database import SessionDep
 from fastapi import APIRouter, HTTPException, status
-from schemas import Book, BookCreate, BookUpdate
+from schemas import Author, Book, BookCreate, BookPatch, BookPut, BookReadWithAuthors
 from sqlmodel import select
 
 router = APIRouter()
 
 
-@router.post(path="/")
-def create_book(book: BookCreate, session: SessionDep) -> Book:
-    validated_data: BookCreate = BookCreate.model_validate(obj=book)
+def get_authors_by_ids(
+    authors_ids: list[int],
+    session: SessionDep,
+) -> list[Author] | None:
+    authors = list(
+        session.exec(statement=select(Author).where(Author.id_.in_(authors_ids))).all(),  # type: ignore[reportAttributeAccessIssue]
+    )
 
-    obj: Book = Book.model_validate(obj=validated_data)
+    if len(authors) != len(authors_ids):
+        return None
 
-    session.add(instance=obj)
+    return authors
+
+
+@router.post(
+    path="/",
+    status_code=status.HTTP_201_CREATED,
+    response_model=BookReadWithAuthors,
+)
+def create_book(new_book: BookCreate, session: SessionDep) -> Book:
+    authors: list[Author] | None = get_authors_by_ids(
+        authors_ids=new_book.authors_ids,
+        session=session,
+    )
+
+    if not authors:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Um ou mais autores não encontrados.",
+        )
+
+    book: Book = Book(**new_book.model_dump(exclude={"authors_ids"}))
+
+    book.authors = authors
+
+    session.add(instance=book)
     session.commit()
-    session.refresh(instance=obj)
+    session.refresh(instance=book)
 
-    return obj
+    return book
 
 
-@router.get(path="/{id_}")
+@router.get(path="/{id_}", response_model=BookReadWithAuthors)
 def read_book(id_: int, session: SessionDep) -> Book:
-    obj: Book | None = session.get(entity=Book, ident=id_)
+    book: Book | None = session.get(entity=Book, ident=id_)
 
-    if not obj:
+    if not book:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Livro não encontrado.",
         )
 
-    return obj
+    return book
 
 
-@router.get(path="/")
+@router.get(path="/", response_model=list[BookReadWithAuthors])
 def read_books(session: SessionDep) -> list[Book]:
     return list(session.exec(statement=select(Book)))
 
 
-def update(
-    id_: int,
-    book: BookUpdate,
-    session: SessionDep,
-    partial: bool = False,
-) -> Book:
-    obj: Book | None = session.get(entity=Book, ident=id_)
+@router.patch(path="/{id_}", response_model=BookReadWithAuthors)
+def patch_book(id_: int, updated_book: BookPatch, session: SessionDep) -> Book:
+    book: Book | None = session.get(entity=Book, ident=id_)
 
-    if not obj:
+    if not book:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Livro não encontrado.",
         )
 
-    validated_data: dict[str, str | int] = book.model_dump(exclude_unset=partial)
-    for key, value in validated_data.items():
-        setattr(obj, key, value)
+    updated_data: dict = updated_book.model_dump(
+        exclude_unset=True,
+    )
 
+    if "authors_ids" in updated_data:
+        authors_ids: list[int] = updated_data.pop("authors_ids")
+
+        authors: list[Author] | None = get_authors_by_ids(
+            authors_ids=authors_ids,
+            session=session,
+        )
+
+        if not authors:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Um ou mais autores não encontrados.",
+            )
+
+        book.authors = authors
+
+    for key, value in updated_data.items():
+        setattr(book, key, value)
+
+    session.add(instance=book)
     session.commit()
-    session.refresh(instance=obj)
+    session.refresh(instance=book)
 
-    return obj
-
-
-@router.patch(path="/{id_}")
-def patch_book(id_: int, book: BookUpdate, session: SessionDep) -> Book:
-    return update(id_=id_, book=book, session=session, partial=True)
+    return book
 
 
-@router.put(path="/{id_}")
-def put_book(id_: int, book: BookUpdate, session: SessionDep) -> Book:
-    return update(id_=id_, book=book, session=session, partial=False)
+@router.put(path="/{id_}", response_model=BookReadWithAuthors)
+def put_book(id_: int, updated_book: BookPut, session: SessionDep) -> Book:
+    authors: list[Author] | None = get_authors_by_ids(
+        authors_ids=updated_book.authors_ids,
+        session=session,
+    )
+
+    if not authors:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Um ou mais autores não encontrados.",
+        )
+
+    book: Book | None = session.get(entity=Book, ident=id_)
+
+    if not book:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Livro não encontrado.",
+        )
+
+    updated_data: dict[str, str | int] = updated_book.model_dump(
+        exclude_unset=False,
+        exclude={"authors_ids"},
+    )
+    for key, value in updated_data.items():
+        setattr(book, key, value)
+
+    book.authors = authors
+
+    session.add(instance=book)
+    session.commit()
+    session.refresh(instance=book)
+
+    return book
 
 
 @router.delete(path="/{id_}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_book(id_: int, session: SessionDep) -> None:
-    obj: Book | None = session.get(entity=Book, ident=id_)
+    book: Book | None = session.get(entity=Book, ident=id_)
 
-    if not obj:
+    if not book:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Livro não encontrado.",
         )
 
-    session.delete(instance=obj)
+    session.delete(instance=book)
     session.commit()

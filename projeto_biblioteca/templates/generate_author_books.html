@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+    <title>Lista de Livros por Autor</title>
+</head>
+<body>
+    <h1>Selecione um autor</h1>
+
+    <div class="form-action">
+        <form action="/lista-autores" method="post">
+            <select name="id_" id="id_">
+                <option value="">--Selecione um autor--</option>
+
+                {% for author in authors %}
+                <option value="{{author.id_}}" {% if selected_author and selected_author.id_ == author.id_ %} selected {% endif %} >
+                    {{ author.name }}
+                </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Buscar livros</button>
+        </form>
+        {% if selected_author %}
+        <form action="/gerar-excel" method="post">
+            <input type="hidden" name="id_" value="{{ selected_author.id_ }}">
+            <button type="submit" class="excel">Exportar para Excel</button>
+        </form>
+        {% endif %}
+    </div>
+    {% if selected_author %}
+    <h2>Livros de {{ selected_author.name }}</h2>
+    <div>
+        {% for book in list_books %}
+        <div class="book">
+            {% if book.url_cover %}
+            <img src="{{ book.url_cover }}" alt="Capa do livro" class="book-cover">
+            {% else %}
+            <div class="book-cover-placeholder">Capa indisponível</div>
+            {% endif %}
+
+            <div class="book-info">
+                <p class="book-detail"><strong>Título:</strong> {{ book.book.title }}</p>
+                <p class="book-detail"><strong>Gênero:</strong> {{ book.book.genre }}</p>
+                <p class="book-detail"><strong>ISBN:</strong> {{ book.book.isbn }}</p>
+            </div>
+        </div>
+        {% else %}
+        <p>Nenhum livro encontrado para este autor.</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>
