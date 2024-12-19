@@ -107,7 +107,7 @@ class Book(BaseModel, BookBase, table=True):
     # Define a relação entre livros e autores.
     # - `back_populates="books"`: Garente a relação bidirecional com autores.
     # - `link_model=AuthorBook`: Usa a tabela associativa `AuthorBook`.
-    authors: list["Author"] = Relationship(
+    authors: list[Author] = Relationship(
         back_populates="books",
         link_model=AuthorBook,
     )
@@ -155,7 +155,7 @@ class BookRead(BaseModel, BookBase):
     """Modelo para leitura de livros."""
 
 
-class BookReadWithAuthors(BaseModel, BookBase):
+class BookReadWithAuthors(BookRead):
     """Modelo para leitura detalhada de livros com seus autores."""
 
     # Lista de autores associados a um livro.

@@ -1,7 +1,9 @@
 FastAPI[all]
+SQLAlchemy
+SQLModel
+pandas
 pytest
 pytest-cov
 requests
 ruff
-SQLAlchemy
-SQLModel
+xlsxwriter

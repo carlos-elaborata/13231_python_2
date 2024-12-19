@@ -3,7 +3,7 @@ from fastapi import APIRouter, HTTPException, status
 from schemas import Author, Book, BookCreate, BookPatch, BookPut, BookReadWithAuthors
 from sqlmodel import select
 
-router = APIRouter()
+router = APIRouter(prefix="/livros", tags=["Books"])
 
 
 def get_authors_by_ids(

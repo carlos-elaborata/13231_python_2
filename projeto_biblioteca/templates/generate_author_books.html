@@ -44,6 +44,12 @@
                 <p class="book-detail"><strong>Título:</strong> {{ book.book.title }}</p>
                 <p class="book-detail"><strong>Gênero:</strong> {{ book.book.genre }}</p>
                 <p class="book-detail"><strong>ISBN:</strong> {{ book.book.isbn }}</p>
+
+                {% if book.url_google_books %}
+                <a href="{{ book.url_google_books }}" target="_blank", class="link-google-books">Ver no Google Books</a>
+                {% else %}
+                <p class="link-google-books-not-found">Indisponível no Google Books</p>
+                {% endif %}
             </div>
         </div>
         {% else %}

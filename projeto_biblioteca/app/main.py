@@ -5,7 +5,9 @@ from typing import TYPE_CHECKING
 from database import engine
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from handlers import author, book, form
+from handlers.author import router as author_router
+from handlers.book import router as book_router
+from handlers.form import router as form_router
 from sqlmodel import SQLModel
 
 if TYPE_CHECKING:
@@ -24,6 +26,6 @@ app = FastAPI(lifespan=lifespan)
 STATIC_DIR: Path = Path(__file__).parents[1] / "static"
 app.mount(path="/static", app=StaticFiles(directory=STATIC_DIR), name="static")
 
-app.include_router(router=author.router, prefix="/autores", tags=["Authors"])
-app.include_router(router=book.router, prefix="/livros", tags=["Books"])
-app.include_router(router=form.router, include_in_schema=False)
+app.include_router(router=author_router)
+app.include_router(router=book_router)
+app.include_router(router=form_router)

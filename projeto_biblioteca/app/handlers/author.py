@@ -10,7 +10,7 @@ from schemas import (
 )
 from sqlmodel import select
 
-router = APIRouter()
+router = APIRouter(prefix="/autores", tags=["Authors"])
 
 
 @router.post(path="/", status_code=status.HTTP_201_CREATED, response_model=AuthorRead)
